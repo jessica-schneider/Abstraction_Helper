@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abstraction Helper</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="https://netgain.tech/wp-content/themes/netgain/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <img community_login-communitylogo_communitylogo="" class="comm-logo__image slds-align_absolute-center"
+    src="https://app.netgain.tech/servlet/servlet.ImageServer?id=0155f000000n2q5&amp;oid=00D5f000001BQON"
+    alt="NetLease">
+  <div class='welcome'>
+    <h1>Welcome to the lease abstraction helper</h1>
+  </div>
+  <div class="main">
+    <!-- <h3>Enter your terms:</h3> -->
+    <p>initial start date <input type="date" id="startDate"></p>
+    <div class='outputs'>
+      <div class="output">
+        <p>end date </p>
+        <input type="date" id="endDate">
+        <button onclick="calculateDifference()"> get details</button>
+        <p id="detailsOutput" class = 'outputText'></p>
+      </div>
+      <div class="output">
+        <p># of months in term </p>
+        <input type="number" min="0" id="termLength">
+        <button onclick="testCalculateEndDate()"> get end date</button>
+        <p id="endDateOutput" class = 'outputText'></p>
+      </div>
+    </div>
+
+    <!-- <p>#payments</p> -->
+    <!--       
+      <li>payment date (nth of month) <input type="text"></li>
+      <li>number of payments <input type="text"></li> -->
+
+
+
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
