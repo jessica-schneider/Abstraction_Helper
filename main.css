@@ -1,20 +1,34 @@
+body {
+  width: 70%;
+  margin: 0 auto;
+}
+
 * {
   font-family: 'Poppins', sans-serif;
   background-color: #f1f7fa;
 }
 
-.welcome {
-  background-color: #f1f7fa;
-
+h1 {
+  color: rgb(0,95,178);
 }
 .main {
   color: #7B7D80;
   display: block;
   margin: 0px auto;
-  min-width: 18rem;
-  max-width: 25rem;
-  min-height: 20rem;
+  min-width: 450px;
+  max-width: 60%;
+  padding: 40px;
+  border: solid 0.5px;
+}
 
+.radio  {
+  /* background-color: pink; */
+  display: flex;
+  flex-direction: column;
+  height: 95px;
+  margin-top: 10px;
+  width:auto;
+  justify-content: space-around;
 }
 
 #endDate, #startDate{
@@ -22,33 +36,14 @@
 }
 
 input{
-  border-color:#7B7D80;
+  border-color: #7B7D80;
   color:#7B7D80;
   margin: 0 auto;
+  border: solid 0.5px;
 }
 .outputs{
   display: flex;
   justify-content: space-between;
-}
-.output {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-  justify-content: space-between;
-}
-.output p{
-  margin: 0 auto 1rem auto;
-}
-
-.output input{
-  width: 95%;
-  margin-bottom: 1rem;
-
-}
-
-.outputText{
-  height: 100px;
-  min-height: 20rem;
 }
 
 button {
@@ -63,6 +58,11 @@ button {
   font-size: 16px;
 }
 
+.outputValue{
+  color: rgb(0,95,178);
+  min-width: 40%;
+}
+
 .outputText{
-  color: blue;
+  min-width: 60%;
 }

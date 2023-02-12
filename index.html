@@ -18,35 +18,54 @@
     src="https://app.netgain.tech/servlet/servlet.ImageServer?id=0155f000000n2q5&amp;oid=00D5f000001BQON"
     alt="NetLease"> -->
   <div class='welcome'>
-    <h1>Welcome to the lease abstraction helper</h1>
+    <h1>Lease abstraction wizard</h1>
   </div>
   <div class="main">
-    <!-- <h3>Enter your terms:</h3> -->
-    <p>initial start date <input type="date" id="startDate"></p>
-    <div class='outputs'>
-      <div class="output">
-        <p>end date </p>
-        <input type="date" id="endDate">
-        <button onclick="calculateDifference()"> get details</button>
-        <p id="detailsOutput" class = 'outputText'></p>
-      </div>
-      <div class="output">
-        <p># of months in term </p>
-        <input type="number" min="0" id="termLength">
-        <button onclick="testCalculateEndDate()"> get end date</button>
-        <p id="endDateOutput" class = 'outputText'></p>
+    <h3>Enter your terms:</h3>
+    <div class=inputs>
+      <label>initial start date</label>
+      <input type="date" id="startDate">
+      <div class="radio">
+        <label>
+          <input type="radio" value="endDateRadio" name="termInput" /> End Date 
+          <input type="date" id="endDate">
+        </label>
+        <label>
+          <input type="radio" value="termLengthRadio" name="termInput" /> Term Length (in months)
+          <input type="number" min="0" id=termLength>
+        </label>
       </div>
     </div>
-
-    <!-- <p>#payments</p> -->
-    <!--       
-      <li>payment date (nth of month) <input type="text"></li>
-      <li>number of payments <input type="text"></li> -->
-
-
-
+    <div class=button>
+      <button onclick="calculateKeyTerms()"> get key terms </button>
+    </div>
+    <div class=outputs>
+      <div class=outputValue>
+        <p id="endDateOutput"></p>
+        <p id="totalMonthsOutput"></p>
+        <p id="monthsPostAdopt"></p>
+        <p id="numberPayments"></p>
+        <p id="lastPmtOutput"></p>
+      </div>
+      <div class=outputText>
+        <p>Lease end date </p>
+        <p>Months total initial term</p>
+        <p>Months term starting 01/01/2022</p>
+        <p>Base rent payments to be made after 01/01/2022</p>
+        <p>Likely last payment date</p>
+      </div>
+    </div>
   </div>
-  <script src="main.js"></script>
+  <script src="inputs.js"></script>
+  <script src="calculations.js"></script>
+  <script src="outputs.js"></script>
 </body>
 
 </html>
+
+<!-- <p>end date <input type="date" id="endDate"> or </p>
+      <p># of months in term <input type="number" min="0" id="termLength"> or </p>
+      <p># of payments after first month <input type="number" min="0" id="numPayments"> </p> -->
+
+<!-- <p id="discountRateOutput" class='outputValue'></p>
+        <p class = 'outputText'>Risk-free rate</p> -->
