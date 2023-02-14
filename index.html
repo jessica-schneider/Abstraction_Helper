@@ -10,13 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <!-- <link rel="shortcut icon" href="https://netgain.tech/wp-content/themes/netgain/favicon.ico" type="image/x-icon"> -->
+  <link rel="shortcut icon" href='favicon.ico' type="image/x-icon">
 </head>
 
 <body>
-  <!-- <img community_login-communitylogo_communitylogo="" class="comm-logo__image slds-align_absolute-center"
-    src="https://app.netgain.tech/servlet/servlet.ImageServer?id=0155f000000n2q5&amp;oid=00D5f000001BQON"
-    alt="NetLease"> -->
   <div class='welcome'>
     <h1>Lease abstraction wizard</h1>
   </div>
@@ -26,18 +23,20 @@
       <label>Initial Start Date</label>
       <input type="date" id="startDate">
       <div class="radio">
-        <label>
-          <input type="radio" value="endDateRadio" name="termInput" /> End Date 
-          <input type="date" id="endDate">
+        <label onclick="document.getElementsByName('termLengthInput')[0].value = ''" >
+          <input type="radio" value="endDateRadio" name="termInput" id="endDateRadio"/> End Date
+          <input type="date" id="endDate" name="endDateInput"
+            onclick="document.getElementById('endDateRadio').checked = true;">
         </label>
-        <label>
-          <input type="radio" value="termLengthRadio" name="termInput" /> Term Length (in months)
-          <input type="number" min="0" id=termLength>
+        <label onclick="document.getElementsByName('endDateInput')[0].value = ''" >
+          <input type="radio" value="termLengthRadio" name="termInput" id="termLengthRadio"/> Term Length (in months)
+          <input type="number" min="0" id="termLength" name="termLengthInput"
+            onclick="document.getElementById('termLengthRadio').checked = true;">
         </label>
       </div>
     </div>
     <div class=button>
-      <button onclick="calculateKeyTerms()"> get key terms </button>
+      <button id="btn" onclick="calculateKeyTerms()"> get key terms </button>
     </div>
     <div class=outputs>
       <div class=outputValue>
@@ -51,7 +50,7 @@
         <p>Lease end date </p>
         <p>Months total initial term</p>
         <p>Months term starting 01/01/2022</p>
-        <p>Base rent payments to be made after 01/01/2022</p>
+        <p>Payments made after 01/01/2022</p>
         <p>Likely last payment date</p>
       </div>
     </div>
@@ -62,10 +61,3 @@
 </body>
 
 </html>
-
-<!-- <p>end date <input type="date" id="endDate"> or </p>
-      <p># of months in term <input type="number" min="0" id="termLength"> or </p>
-      <p># of payments after first month <input type="number" min="0" id="numPayments"> </p> -->
-
-<!-- <p id="discountRateOutput" class='outputValue'></p>
-        <p class = 'outputText'>Risk-free rate</p> -->
