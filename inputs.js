@@ -32,7 +32,6 @@ function getEndDateInputs() {
   } else {
     endDateObject = new Date(document.getElementById('startDate').value);
     endDateObject.setMonth(monthsTerm);
-    endDateObject.setDate(endDateObject.getDate() + 1);
   }  
     var endMonth = endDateObject.getMonth();
     var endYear = endDateObject.getFullYear();
