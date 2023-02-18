@@ -1,41 +1,28 @@
 function getStartDateInputs() {
   var startDate = document.getElementById('startDate').value;
-  var startDateObject = new Date(startDate);
-
-  var startMonth = startDateObject.getMonth();
-  var startYear = startDateObject.getFullYear(); // isolate year integer
-
-  var startDay = startDateObject.getUTCDate(); //isolate day of month integer
-  return { startMonth, startYear, startDay }
+  var startDateObject = moment.utc(startDate);
+  return {startDateObject, startDate};
 }
 
 function getAdoptDateInputs() {
-  var adoptDateObject = new Date('01/01/2022');
-  var adoptMonth = adoptDateObject.getMonth();
-  var adoptYear = adoptDateObject.getFullYear();
-  return { adoptMonth, adoptYear }
+  var adoptDateObject = moment.utc('01/01/2022', "MM-DD-YYYY");
+  var adoptDate = adoptDateObject.format('YYYY MM DD');
+  return {adoptDateObject, adoptDate};
 }
 
 
 function getEndDateInputs() {
-  var {startMonth} = getStartDateInputs();
+  var { startDate} = getStartDateInputs();
   var termLength = document.getElementById('termLength').value;
   termLength = parseInt(termLength);
-  var monthsTerm = (startMonth + termLength)
-  var endDate;
-  var endDateObject = new Date();
+  var endDateObject;
 
   if (document.getElementById('endDate').value) {
-    endDate = document.getElementById('endDate').value;
-    endDateObject = new Date(endDate);
-    endDateObject.setDate(endDateObject.getDate() + 1);
-  } else {
-    endDateObject = new Date(document.getElementById('startDate').value);
-    endDateObject.setMonth(monthsTerm);
-  }  
-    var endMonth = endDateObject.getMonth();
-    var endYear = endDateObject.getFullYear();
-
-    return { endDateObject, endMonth, endYear } 
+  endDate = document.getElementById('endDate').value;
+  endDateObject = moment.utc(endDate, "YYYY-MM-DD");
+} else {
+  endDateObject = moment.utc(startDate);
+  endDateObject.add(termLength, "months").subtract(1, "day");
+}  endDate = endDateObject.format('YYYY MM DD');
+return {endDateObject, endDate}
 }
-

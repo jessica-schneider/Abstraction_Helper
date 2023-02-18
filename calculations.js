@@ -1,44 +1,57 @@
 function calculateMonthsTerm() {
-  var { startMonth, startYear } = getStartDateInputs();
-  var {endMonth, endYear } = getEndDateInputs();
-  //calculate number of months between start date and end date
-  let termMonthsDifference = endMonth - startMonth; // calc difference in month integers from start to end
-  let termYearsDifference = endYear - startYear; // calc difference in year integers from start to end
-  let termTotalMonthsOutput = termMonthsDifference + termYearsDifference * 12; // convert years to months and add to months integer
-  return termTotalMonthsOutput;
+  var { startDate } = getStartDateInputs();
+  var {endDate } = getEndDateInputs();
+  var startDateObject = moment.utc(startDate);
+  var endDateObject = moment.utc(endDate, "YYYY-MM-DD");
+  var monthsDiffInitialTerm = endDateObject.diff(startDateObject, 'months') + 1;
+  return monthsDiffInitialTerm;
 }
 
 function calculateMonthsAdoption() {
-  var { adoptMonth, adoptYear } = getAdoptDateInputs();
-  var {endMonth, endYear } = getEndDateInputs();
-  //calculate number of months between 1/1/22 and end date
-  let MonthsDifferenceAdopt = endMonth - adoptMonth; // calc difference in month integers from end month to 1/1/22
-  let YearsDifferenceAdopt = endYear - adoptYear; // calc difference in year integers from end year to 1/1/22
-  let monthsPostAdopt = MonthsDifferenceAdopt + YearsDifferenceAdopt * 12; //// convert years to months and add to months integer
-  return monthsPostAdopt + 1; // returns number of months in term following 1/1/22
+  var { adoptDate } = getAdoptDateInputs();
+  var {endDate } = getEndDateInputs();
+  // var { startDate } = getStartDateInputs();
+  // var startDateObject = moment.utc(startDate);
+  var monthsDiffAdoption;
+  var adoptDateObject = moment.utc(adoptDate, "YYYY-MM-DD");
+  var endDateObject = moment.utc(endDate, "YYYY-MM-DD"); 
+  // if (startDateObject.date() >1) {
+  //   monthsDiffAdoption = endDateObject.diff(adoptDateObject, 'months');
+  // } else {
+  monthsDiffAdoption = endDateObject.diff(adoptDateObject, 'months') +1;
+  // }
+  return monthsDiffAdoption;
 }
 
 function calculateNumberPayments() {
-  var { startDay } = getStartDateInputs();
+  var { startDate } = getStartDateInputs();
+  var startDateObject = moment.utc(startDate);
   let numberOfPayments = calculateMonthsAdoption();
-  if (startDay > 1) {
+  let paymentDayOfMonth = startDateObject.date();
+  if (paymentDayOfMonth > 1) {
     return numberOfPayments - 1;
   } else {
     return numberOfPayments;
   }
 }
 
-function formatEndDateObject() {
-  var {endDateObject } = getEndDateInputs();
-  return endDateObject.toDateString();
+function calculateLastPayment() {
+  var { startDate } = getStartDateInputs();
+  var {endDate} = getEndDateInputs();
+  var startDateObject = moment.utc(startDate);
+  var endDateObject = moment.utc(endDate, "YYYY-MM-DD");
+  var endMonth = endDateObject.month();
+  var lastPaymentDate = moment.utc(endDate, "YYYY-MM-DD");
+  if (startDateObject.date() > 1) {
+  lastPaymentDate.month(endMonth-1).date(startDateObject.date() -1);
+} else {
+  lastPaymentDate.month(endMonth).date(1);
+}
+return lastPaymentDate.format('MMMM D, YYYY');
 }
 
-
-function calculateLastPayment() {
-  var { startDay } = getStartDateInputs();
-  var {endDateObject, endMonth} = getEndDateInputs();
-  var lastPaymentDate = new Date (endDateObject);
-  if (startDay > 1) {
-  lastPaymentDate.setMonth(endMonth-1);
-} return lastPaymentDate.toDateString();
+function formatEndDate() {
+  var {endDate} = getEndDateInputs();
+  var endDateObject = moment.utc(endDate, "YYYY-MM-DD");
+  return endDateObject.format("MMMM D, YYYY");
 }
